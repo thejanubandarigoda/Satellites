@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #00d4ff;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.map-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.satellite-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#earth-satellite-visualization {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+}
+
+.earth-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.earth {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #1e3c72 0%, #2a5298 50%, #4a90e2 100%);
+    box-shadow: 
+        0 0 50px rgba(74, 144, 226, 0.3),
+        inset -20px -20px 50px rgba(0, 0, 0, 0.3);
+    animation: earth-rotation 20s linear infinite;
+}
+
+.earth-surface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: 
+        radial-gradient(circle at 30% 30%, #4a7c59 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, #8b4513 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, #228b22 0%, transparent 50%);
+    opacity: 0.8;
+}
+
+.earth-clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 30%),
+        radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.4) 0%, transparent 35%);
+    animation: cloud-movement 15s ease-in-out infinite;
+}
+
+.satellites-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.satellite {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.4);
+    animation: satellite-orbit 8s linear infinite;
+    z-index: 10;
+}
+
+.satellite::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #00d4ff, #0099cc);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: satellite-pulse 2s ease-in-out infinite;
+}
+
+.satellite::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    width: 10px;
+    height: 2px;
+    background: #00d4ff;
+    transform: translateY(-50%);
+    box-shadow: 15px 0 0 #00d4ff, 30px 0 0 #00d4ff;
+}
+
+.orbital-paths {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.orbital-path {
+    position: absolute;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 50%;
+    animation: orbital-glow 3s ease-in-out infinite;
+}
+
+.connection-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.connection-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: connection-pulse 2s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+#status-container {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+#status-container h3 {
+    color: #00d4ff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.status-info p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+#signal-strength, #gps-accuracy {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.connected #signal-strength {
+    color: #4ecdc4;
+}
+
+.connected #gps-accuracy {
+    color: #45b7d1;
+}
+
+/* Animations */
+@keyframes earth-rotation {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes cloud-movement {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes satellite-orbit {
+    from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+}
+
+@keyframes satellite-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+@keyframes orbital-glow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes connection-pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #earth-satellite-visualization {
+        height: 400px;
+    }
+    
+    .earth {
+        width: 150px;
+        height: 150px;
+    }
+}

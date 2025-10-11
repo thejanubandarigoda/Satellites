@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Tracker</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>Real-Time GPS Tracker</h1>
+        <div class="main-content">
+            <div class="map-section">
+                <div id="map"></div>
+            </div>
+            <div class="satellite-section">
+                <div id="earth-satellite-visualization">
+                    <div class="earth-container">
+                        <div class="earth">
+                            <div class="earth-surface"></div>
+                            <div class="earth-clouds"></div>
+                        </div>
+                        <div class="satellites-container">
+                            <!-- Satellites will be dynamically added here -->
+                        </div>
+                        <div class="orbital-paths">
+                            <!-- Orbital paths will be dynamically added here -->
+                        </div>
+                        <div class="connection-lines">
+                            <!-- Connection lines will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+                <div id="status-container">
+                    <h3>Satellite Network Status</h3>
+                    <div class="status-info">
+                        <p>Active Satellites: <b id="sats-count">0</b></p>
+                        <p>Signal Strength: <span id="signal-strength">Weak</span></p>
+                        <p>GPS Accuracy: <span id="gps-accuracy">Poor</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
