@@ -10,12 +10,12 @@ const char* password = "PS";
 // Your server endpoint
 const char* serverName = "http://Your IP Address/update_location";
 
-HardwareSerial gpsSerial(2); // Use Serial 2 for GPS
+HardwareSerial gpsSerial(2);  // Use Serial 2 for GPS
 TinyGPSPlus gps;
 
 void setup() {
   Serial.begin(115200);
-  gpsSerial.begin(9600, SERIAL_8N1, 16, 17); // RX, TX pins
+  gpsSerial.begin(9600, SERIAL_8N1, 16, 17);  // RX, TX pins
 
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
@@ -62,3 +62,4 @@ void loop() {
       Serial.println("Searching for GPS signal...");
   }
 }
+
